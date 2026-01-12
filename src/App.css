@@ -1,0 +1,24 @@
+/* 1️⃣ ALL @import FIRST */
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Italiana&family=Poppins:wght@100..900&family=Raleway:wght@100..900&display=swap');
+@import "tailwindcss";
+/* 2️⃣ THEN plugins */
+@plugin "daisyui";
+
+/* 3️⃣ THEN normal CSS */
+body {
+  background-color: white;
+}
+
+.btn {
+  background-color: rgb(255, 172, 7);
+  border-color: rgb(255, 172, 7);
+  color: #fff;
+}
+.text{
+  color:rgb(255, 172, 7) ;
+}
+.italiana-regular {
+  font-family: "Italiana", serif;
+  font-weight: 700;
+}
