@@ -7,7 +7,7 @@ import Recent from '../Components/Recent';
 const Home = () => {
 
     return (
-        <div>
+        <div className='bg-white'>
              <Slider></Slider>
             <Latestmovies></Latestmovies>
             <Recent></Recent>

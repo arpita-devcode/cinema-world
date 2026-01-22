@@ -1,74 +1,168 @@
-import React, { useContext} from 'react';
-import { NavLink } from 'react-router'
-import { AuthContext } from '../context/AuthContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilm} from '@fortawesome/free-solid-svg-icons';
-
-
+// Navber.jsx
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilm, faX, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Navber = () => {
-    const { user,signoutUser } = useContext(AuthContext);
-    const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/movies'>All Movies</NavLink></li>
+  const { user, signoutUser } = useContext(AuthContext);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        {
-            user ? 
-            <>
-                <li><NavLink to='/movies/add'>Add movies</NavLink></li>
-                <li><NavLink to='/movies/my-collection'>My Collection</NavLink></li>
-                <li><NavLink to='/movies/my-watchlist'>My Watchlist</NavLink></li>
-            </> :
-             <>
-                    <li><NavLink to='movies/login'>Log In</NavLink></li>
-                    <li><NavLink to='movies/register'>Register</NavLink></li>
-                </>
-                
-        }
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/movies"
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+          }
+        >
+          All Movies
+        </NavLink>
+      </li>
+
+      {user ? (
+        <>
+          <li>
+            <NavLink
+              to="/movies/add"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+              }
+            >
+              Add Movies
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/movies/my-collection"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+              }
+            >
+              My Collection
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/movies/my-watchlist"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+              }
+            >
+              My Watchlist
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              to="/movies/login"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/register"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-gray-700"
+              }
+            >
+              Register
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
+  );
 
+  return (
+    <nav className="bg-base-100 shadow-sm sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faFilm} className="text-yellow-500 text-2xl" />
+            <NavLink to="/" className="text-xl font-bold text-yellow-500">
+              MovieMaster Pro
+            </NavLink>
+          </div>
 
-    return (
-        <div>
-            <div className="navbar bg-base-100 shadow-sm">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                        </div>
-                        <ul
-                            tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {links}
-                        </ul>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-200">
-                        <FontAwesomeIcon icon={faFilm} className='text-yellow-500 h-2' />
-                        <a className="text-xl text-yellow-500">MovieMaster Pro</a>
-                    </div>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 gap-4">{links}</ul>
+          </div>
 
+          {/* Right Buttons */}
+          <div className="hidden lg:flex items-center gap-2">
+            {user ? (
+              <button onClick={signoutUser} className="btn btn-sm">
+                Sign Out
+              </button>
+            ) : (
+              <NavLink to="/movies/login" className="btn btn-sm">
+                Sign In
+              </NavLink>
+            )}
+          </div>
 
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        {links}
-                    </ul>
-                </div>
-                 
-                   
-                    
-                <div className="navbar-end">
-                    {
-                        user ? <a onClick={signoutUser} className="btn">signout</a> : <NavLink to="movies/login" className="btn">
-            Sign In
-          </NavLink>
-                    }
-                </div>
-            </div>
-            
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              className="btn btn-ghost"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <FontAwesomeIcon icon={mobileMenuOpen ? faX : faBars} className="text-2xl" />
+            </button>
+          </div>
         </div>
-        
-    );
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-base-100 shadow-md">
+          <ul className="menu flex flex-col p-4 gap-2">{links}</ul>
+          <div className="p-4 border-t border-gray-200">
+            {user ? (
+              <button
+                onClick={() => {
+                  signoutUser();
+                  setMobileMenuOpen(false);
+                }}
+                className="btn w-full"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <NavLink
+                to="/movies/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn w-full"
+              >
+                Sign In
+              </NavLink>
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
 };
 
 export default Navber;

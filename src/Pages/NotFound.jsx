@@ -1,11 +1,13 @@
+import React from "react";
+import { Link } from "react-router";
+
 const NotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-6xl font-bold text-red-500">404</h1>
-      <p className="text-xl mt-4">Page Not Found</p>
-      <p className="text-gray-500 mt-2">
-        The page you are looking for doesn’t exist.
-      </p>
+    <div style={{ textAlign: "center", marginTop: "80px" }}>
+      <h1>404</h1>
+      <h2>Oops! Page Not Found</h2>
+      <p>The page you’re looking for doesn’t exist.</p>
+      <Link to="/">Go Back Home</Link>
     </div>
   );
 };

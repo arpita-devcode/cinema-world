@@ -13,6 +13,7 @@ const AllMovies = () => {
     useEffect(() => {
         axios.get("http://localhost:3000/movies")
             .then(res => setMovies(res.data))
+            
     }
         , [])
         const { user } = useContext(AuthContext);
@@ -39,7 +40,7 @@ const handleWatchlist = (movie) => {
 };
 
     return (
-        <div className='p-3.5'>
+        <div className='p-3.5 bg-white'>
             <h1 className=' text-center text text-4xl my-5'>All Featured Movies</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {movies.map(movie => (
