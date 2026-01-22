@@ -10,7 +10,7 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/module
 import joker from "../assets/Images/joker.jpg";
 import inception from "../assets/Images/inception.jpg";
 import darkKnight from "../assets/Images/darkKnight.jpg";
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 const Slider = () => {
   return (
@@ -52,9 +52,9 @@ const Slider = () => {
                 <button className="btn px-6 py-2 rounded-md font-semibold">
                   View Details
                 </button>
-                <Link to="/movies"><button className="border border-white px-6 py-2 rounded-md font-semibold hover:bg-white hover:text-black">
+                <NavLink to='/movies'><button className="border border-white px-6 py-2 rounded-md font-semibold hover:bg-white hover:text-black">
                   Browse All Movies
-                </button></Link>
+                </button></NavLink>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { use} from 'react';
+import React, { useContext} from 'react';
 import { NavLink } from 'react-router'
 import { AuthContext } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,13 +7,7 @@ import { faFilm} from '@fortawesome/free-solid-svg-icons';
 
 
 const Navber = () => {
-    // const[darkMode,setDarkmode] = useState("dark")
-    // useEffect(()=>{
-    //     const html = document.documentElement
-    //     if(darkMode) html.classList.add("dark-mode")
-    //         else html.classList.remove("dark-mode")
-    // })
-    const { user } = use(AuthContext);
+    const { user,signoutUser } = useContext(AuthContext);
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/movies'>All Movies</NavLink></li>
@@ -60,19 +54,14 @@ const Navber = () => {
                         {links}
                     </ul>
                 </div>
-                 <div className="navbar-end flex items-center gap-2">
-                    {/* Theme Toggle Button */}
-                    {/* <button
-                        onClick={() => setDarkmode(!darkMode)}
-                        className="btn btn-ghost rounded-full p-2"
-                        title="Toggle Dark/Light Mode"
-                    >
-                        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-                    </button> */}
-                    </div>
+                 
+                   
+                    
                 <div className="navbar-end">
                     {
-                        user ? <a className="btn">signout</a> : <a className="btn">signin</a>
+                        user ? <a onClick={signoutUser} className="btn">signout</a> : <NavLink to="movies/login" className="btn">
+            Sign In
+          </NavLink>
                     }
                 </div>
             </div>

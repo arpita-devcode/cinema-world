@@ -1,9 +1,11 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
-  const { signinwithgoogle,createUser } = use(AuthContext)
+  const { signinwithgoogle,createUser } = useContext(AuthContext)
+  const navigation = useNavigate();
   const handleregister = (e) => {
     e.preventDefault()
     const form = e.target
@@ -21,6 +23,7 @@ const Register = () => {
         form.reset();
         
         console.log("Registered user:", result.user);
+        navigation('/')
       })
       .catch(err => {
         console.log(err.message);
@@ -30,7 +33,9 @@ const Register = () => {
   const handlegooglesignin = () => {
     signinwithgoogle()
       .then(result => {
-        console.log(result)
+        navigation('/');
+        console.log(result);
+
       })
       .catch(error => {
         console.log(error)

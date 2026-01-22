@@ -2,19 +2,48 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import '../styles/Button.css'
+import { AuthContext } from "../context/AuthContext";
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [movieData, setMovieData] = useState({});
+  
   useEffect(() => {
     axios
       .get(`http://localhost:3000/movies/${id}`)
       .then(res => {
         setMovie(res.data);
+        setMovieData(res.data);
         setLoading(false);
       });
   }, [id]);
+  
+  const handleChange = (e) => {
+  const { name, value } = e.target;
+  setMovieData({ ...movieData, [name]: value });
+};
+
+  const handleUpdate= (e) =>{
+    e.preventDefault();
+    // update logic here
+    axios.patch(`http://localhost:3000/movies/${id}`, movieData)
+    .then(res => {
+      if (res.data.modifiedCount > 0) {
+        alert("Movie updated 🎬");}
+      })
+      setMovie(movieData); // refresh display instantly
+
+  }
+  const handleDel=()=>{
+    //delete logic here'
+    axios.delete(`http://localHost:3000/movies/${id}`)
+    .then(res=>{
+      if(res.data.deletedCount>0){
+        alert("Movie deleted")
+      }
+    })
+  }
 
   // ✅ SAFETY CHECK
   if (loading) {
@@ -57,14 +86,14 @@ const MovieDetails = () => {
               <div className="modal-box">
                 <div className="max-w-md mx-auto mt-10 p-5 border rounded-lg shadow-lg bg-white dark:bg-gray-800">
                   <h2 className="text-2xl font-bold mb-4 text-center">Update the list</h2>
-                  <form className="flex flex-col gap-4">
+                  <form onSubmit={handleUpdate} className="flex flex-col gap-4">
                     <label>
                       Title:
                       <input
                         type="text"
                         name="title"
-                        // value={movieData.title}
-                        // onChange={handleChange}
+                         value={movieData.title}
+                         onChange={handleChange}
                         required
                         className="input input-bordered w-full mt-1"
                       />
@@ -74,8 +103,8 @@ const MovieDetails = () => {
                       Plot Summary:
                       <textarea
                         name="plotSummary"
-                        // value={movieData.plotSummary}
-                        // onChange={handleChange}
+                        value={movieData.plotSummary}
+                        onChange={handleChange}
                         required
                         className="textarea textarea-bordered w-full mt-1"
                       />
@@ -86,8 +115,8 @@ const MovieDetails = () => {
                       <input
                         type="text"
                         name="posterUrl"
-                        // value={movieData.posterUrl}
-                        // onChange={handleChange}
+                        value={movieData.posterUrl}
+                        onChange={handleChange}
                         required
                         className="input input-bordered w-full mt-1"
                       />
@@ -98,8 +127,8 @@ const MovieDetails = () => {
                       <input
                         type="text"
                         name="genre"
-                        // value={movieData.posterUrl}
-                        // onChange={handleChange}
+                        value={movieData.genre}
+                        onChange={handleChange}
                         required
                         className="input input-bordered w-full mt-1"
                       />
@@ -109,13 +138,34 @@ const MovieDetails = () => {
                       <input
                         type="date"
                         name="releaseDate"
-                        // value={movieData.releaseDate}
-                        // onChange={handleChange}
+                        value={movieData.releaseDate}
+                         onChange={handleChange}
                         required
                         className="input input-bordered w-full mt-1"
                       />
                     </label>
-
+                    <label>
+                      Duration:
+                      <input
+                        type="text"
+                        name="duration"
+                        value={movieData.duration}
+                        onChange={handleChange}
+                        required
+                        className="input input-bordered w-full mt-1"
+                      />
+                    </label>
+                     <label>
+                      Rating:
+                      <input
+                        type="text"
+                        name="rating"
+                        value={movieData.rating}
+                        onChange={handleChange}
+                        required
+                        className="input input-bordered w-full mt-1"
+                      />
+                    </label>
                     <button
                       type="submit"
                       className="btn btn-primary mt-4 bg-yellow-500 hover:bg-yellow-600 text-white"
@@ -129,7 +179,7 @@ const MovieDetails = () => {
                 <button>close</button>
               </form>
             </dialog>
-            <button className="btn h-12 ">Delete</button>
+            <button onClick={handleDel} className="btn h-12 ">Delete</button>
           </div>
         </div>
 

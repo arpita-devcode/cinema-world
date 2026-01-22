@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Route } from "react-router";
 
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
@@ -12,6 +12,7 @@ import UpdateMovie from "../Pages/UpdateMovie";
 import NotFound from "../Pages/NotFound";
 import Root from "../Pages/Root";
 import Watchlist from "../Pages/Watchlist";
+import PrivateRoute from "../Pages/Privateroute";
 
 
 const router = createBrowserRouter([
@@ -26,12 +27,20 @@ const router = createBrowserRouter([
         children: [
           { index: true, Component: AllMovies },
           { path: ":id", Component: MovieDetails },
-          { path: "add", Component: AddMovie },
+          { path: "add", element:<PrivateRoute><AddMovie></AddMovie></PrivateRoute> },
           { path: "my-collection", Component: MyCollection },
           { path: "update/:id", Component: UpdateMovie },
-          { path: "my-watchlist", Component:Watchlist},
-          { path: "register", Component:Register},
-          {path:"login", Component:Login}
+          {
+            path: "my-watchlist",
+            element: (
+              <PrivateRoute>
+                <Watchlist />
+              </PrivateRoute>
+            ),
+          },
+
+          { path: "register", Component: Register },
+          { path: "login", Component: Login }
         ],
       },
     ],
@@ -39,16 +48,9 @@ const router = createBrowserRouter([
 
   {
     path: "/movies/:id",
-    Component: MovieDetails,
+    element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute>
   },
-  // {
-  //   path: "/movies/add",
-  //   Component: AddMovie,
-  // },
-  // {
-  //   path: "/movies/my-collection",
-  //   Component: MyCollection,
-  // },
+
   {
     path: "/movies/update/:id",
     Component: UpdateMovie,
@@ -57,6 +59,7 @@ const router = createBrowserRouter([
     path: "*",
     Component: NotFound,
   },
+  
 ]);
 
 export default router;

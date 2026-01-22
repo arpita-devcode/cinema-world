@@ -8,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 
 
 const AllMovies = () => {
+    
     const [movies, setMovies] = useState([])
     useEffect(() => {
         axios.get("http://localhost:3000/movies")
@@ -60,9 +61,11 @@ const handleWatchlist = (movie) => {
                                 <div className="badge badge-outline">{movie.rating}</div>
                                 <div className="badge badge-outline">{movie.duration}m</div>
                             </div>
-                            <Link to={`/movies/${movie._id}`}><button className="btnn liquid">
+                            {
+                                user? <Link to={`/movies/${movie._id}`}><button className="btnn liquid">
                                 View Details
-                            </button></Link>
+                            </button></Link> : <></>
+                            }
 
                            </div>
                            <div><FontAwesomeIcon className='text-3xl  cursor-pointer text-gray-400 hover:text-red-500' onClick={()=>handleWatchlist(movie)} icon={faHeart} /></div>
