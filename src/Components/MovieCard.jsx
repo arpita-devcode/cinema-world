@@ -1,16 +1,16 @@
 import React from "react";
 
 const MovieCard = () => {
-    const genres = [
-  { name: "Action", icon: "🔥" },
-  { name: "Comedy", icon: "😂" },
-  { name: "Drama", icon: "🎭" },
-  { name: "Horror", icon: "👻" },
-  { name: "Romance", icon: "❤️" },
-  { name: "Sci-Fi", icon: "🚀" },
-  { name: "Thriller", icon: "😱" },
-  { name: "Animation", icon: "🎨" },
-];
+  const genres = [
+    { name: "Action", icon: "🔥" },
+    { name: "Comedy", icon: "😂" },
+    { name: "Drama", icon: "🎭" },
+    { name: "Horror", icon: "👻" },
+    { name: "Romance", icon: "❤️" },
+    { name: "Sci-Fi", icon: "🚀" },
+    { name: "Thriller", icon: "😱" },
+    { name: "Animation", icon: "🎨" },
+  ];
   return (
     <div>
       <section className="bg-white py-16 px-6 md:px-16">

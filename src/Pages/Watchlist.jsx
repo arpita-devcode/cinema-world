@@ -31,7 +31,7 @@ const Watchlist = () => {
         return <p className="text-center mt-10 text-gray-500">Your watchlist is empty 🎬</p>;
     }
     const handleDelete = (id) => {
-  axios.delete(`http://localhost:3000/watchlist/${id}`)
+  axios.delete(`http://localhost:5000/watchlist/${id}`)
     .then((res) => {
       if (res.data.deletedCount > 0) {
         setWatchlist(prev =>
@@ -44,7 +44,7 @@ const Watchlist = () => {
 
 
     return (
-        <div className="max-w-6xl mx-auto mt-10 px-4">
+        <div className="max-w-6xl mx-auto mt-10 px-4 bg-white">
             <h2 className="text-3xl font-bold mb-6 text-center">My Watchlist</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {watchlist.map((movie) => (

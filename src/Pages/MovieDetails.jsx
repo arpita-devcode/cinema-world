@@ -27,7 +27,7 @@ const MovieDetails = () => {
   const handleUpdate= (e) =>{
     e.preventDefault();
     // update logic here
-    axios.patch(`http://localhost:3000/movies/${id}`, movieData)
+    axios.patch(`http://localhost:5000/movies/${id}`, movieData)
     .then(res => {
       if (res.data.modifiedCount > 0) {
         alert("Movie updated 🎬");}
@@ -37,7 +37,7 @@ const MovieDetails = () => {
   }
   const handleDel=()=>{
     //delete logic here'
-    axios.delete(`http://localHost:3000/movies/${id}`)
+    axios.delete(`http://localHost:5000/movies/${id}`)
     .then(res=>{
       if(res.data.deletedCount>0){
         alert("Movie deleted")

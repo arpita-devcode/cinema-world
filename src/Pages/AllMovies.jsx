@@ -28,7 +28,7 @@ const AllMovies = () => {
       return;
     }
 
-    axios.post("http://localhost:3000/watchlist", { movieId: movie._id, userEmail: user.email })
+    axios.post("http://localhost:5000/watchlist", { movieId: movie._id, userEmail: user.email })
       .then(res => {
         if(res.data.message){
           alert(res.data.message);
