@@ -11,7 +11,7 @@ const MyCollection = () => {
   useEffect(() => {
     if (!userEmail) return; // wait until userEmail exists
 
-    fetch(`http://localhost:3000/movies`)
+    fetch(`http://localhost:5000/movies`)
       .then((res) => res.json())
       .then((data) => {
         // filter movies by userEmail

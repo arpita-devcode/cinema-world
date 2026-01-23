@@ -111,10 +111,18 @@ const Navber = () => {
 
           {/* Right Buttons */}
           <div className="hidden lg:flex items-center gap-2">
-            {user ? (
-              <button onClick={signoutUser} className="btn btn-sm">
-                Sign Out
-              </button>
+             {user ? (
+              <>
+                <img
+                  src={user.photoURL || "https://via.placeholder.com/40"}
+                  alt="Avatar"
+                  className="w-10 h-10 rounded-full border-2 border-yellow-500"
+                  title={user.displayName || user.email}
+                />
+                <button onClick={signoutUser} className="btn btn-sm">
+                  Sign Out
+                </button>
+              </>
             ) : (
               <NavLink to="/movies/login" className="btn btn-sm">
                 Sign In

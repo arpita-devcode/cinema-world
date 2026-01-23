@@ -11,7 +11,7 @@ const MovieDetails = () => {
   
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/movies/${id}`)
+      .get(`http://localhost:5000/movies/${id}`)
       .then(res => {
         setMovie(res.data);
         setMovieData(res.data);

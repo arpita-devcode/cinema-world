@@ -5,7 +5,7 @@ const Recent = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/recent-movies")
+    axios.get("http://localhost:5000/recent-movies")
       .then(res => setMovies(res.data))
       .catch(err => console.error(err));
   }, []); // ✅ Add empty dependency array to avoid infinite requests

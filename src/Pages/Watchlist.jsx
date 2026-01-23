@@ -9,7 +9,7 @@ const Watchlist = () => {
 
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:3000/watchlist?email=${user.email}`)
+            axios.get(`http://localhost:5000/watchlist?email=${user.email}`)
                 .then((res) => {
                     setWatchlist(res.data);
                     //   setLoading(false);

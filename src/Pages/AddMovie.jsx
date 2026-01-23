@@ -22,7 +22,7 @@ const AddMovie = () => {
 
     try {
       // Send movie data along with logged-in user's email
-      const res = await fetch("http://localhost:3000/movies", {
+      const res = await fetch("http://localhost:5000/movies", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...movieData, userEmail }), // 👈 email added automatically
