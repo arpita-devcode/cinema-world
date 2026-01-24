@@ -9,7 +9,7 @@ const Watchlist = () => {
 
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:5000/watchlist?email=${user.email}`)
+            axios.get(`https://movies-server-backend.vercel.app/watchlist?email=${user.email}`)
                 .then((res) => {
                     setWatchlist(res.data);
                     //   setLoading(false);
@@ -31,7 +31,7 @@ const Watchlist = () => {
         return <p className="text-center mt-10 text-gray-500">Your watchlist is empty 🎬</p>;
     }
     const handleDelete = (id) => {
-  axios.delete(`http://localhost:5000/watchlist/${id}`)
+  axios.delete(`https://movies-server-backend.vercel.app/watchlist/${id}`)
     .then((res) => {
       if (res.data.deletedCount > 0) {
         setWatchlist(prev =>

@@ -11,7 +11,7 @@ const MyCollection = () => {
   useEffect(() => {
     if (!userEmail) return; // wait until userEmail exists
 
-    fetch(`http://localhost:5000/movies`)
+    fetch(`https://movies-server-backend.vercel.app/movies`)
       .then((res) => res.json())
       .then((data) => {
         // filter movies by userEmail

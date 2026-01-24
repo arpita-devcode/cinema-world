@@ -7,7 +7,7 @@ const LatestMovies = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/latest-movies")
+      .get("https://movies-server-backend.vercel.app/latest-movies")
       .then((res) => {
         setMovies(res.data);
         setLoading(false);

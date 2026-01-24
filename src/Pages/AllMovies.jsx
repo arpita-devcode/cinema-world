@@ -8,16 +8,22 @@ import { AuthContext } from '../context/AuthContext';
 
 const AllMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     let isMounted = true;
 
-    axios.get("http://localhost:5000/movies")
+    axios.get("https://movies-server-backend.vercel.app/movies")
       .then(res => {
-        if (isMounted) setMovies(res.data);
+        if (isMounted) setMovies(Array.isArray(res.data) ? res.data : []);
+        setLoading(false);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setMovies([]);
+        setLoading(false);
+      });
 
     return () => { isMounted = false; };
   }, []);
@@ -28,7 +34,7 @@ const AllMovies = () => {
       return;
     }
 
-    axios.post("http://localhost:5000/watchlist", { movieId: movie._id, userEmail: user.email })
+    axios.post("https://movies-server-backend.vercel.app/watchlist", { movieId: movie._id, userEmail: user.email })
       .then(res => {
         if(res.data.message){
           alert(res.data.message);
@@ -36,8 +42,14 @@ const AllMovies = () => {
           alert("Added to Watchlist ❤️");
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        alert("Failed to add to watchlist");
+      });
   };
+
+  if (loading) return <p className="text-center mt-10">Loading movies...</p>;
+  if (movies.length === 0) return <p className="text-center mt-10 text-gray-500">No movies available 🎬</p>;
 
   return (
     <div className='p-3.5 bg-white'>
