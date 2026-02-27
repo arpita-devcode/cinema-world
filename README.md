@@ -1,90 +1,54 @@
 🎬 Movie-Flexer
 
-Movie-Flexer is a modern, responsive movie browsing web application that lets users search, explore, and discover movies from latest releases to top-rated classics. Powered by a public movie database API, it delivers movie posters, details, and search results in a clean, intuitive UI.
+Movie-Flexer is a responsive movie browsing web application that allows users to search and explore movies easily. The app fetches real-time movie data from a public movie API and displays it in a clean, user-friendly interface.
 
-🔗 Live Demo: https://movie-flexer.netlify.app/
+🔗 Live Site: https://movie-flexer.netlify.app/
 
-🧠 Features
+✨ Features
 
-✔ Search for movies by title or keyword
-✔ Browse trending, popular, and top-rated movies
-✔ View movie details including poster, rating, release date, and overview
-✔ Responsive layout for desktop, tablet & mobile
-✔ Smooth UI built with React components
-✔ Utilizes external movie API for live data (e.g., TMDB)
+🔍 Search movies by name
 
-🚀 Tech Stack
-Component	Technology
-Frontend	React.js
-Data Fetching	Axios / Fetch
-API	TMDB (or similar movie API)
-Hosting	Netlify
-UI	HTML, CSS (or CSS framework like Tailwind/Bootstrap)
-📦 How It Works
+🎞️ Browse popular and trending movies
 
-Search Input – User enters a movie name in the search field.
+⭐ View movie ratings, release dates, and descriptions
 
-API Request – The app sends a request to a movie API to fetch movie data.
+📱 Fully responsive design (mobile & desktop friendly)
 
-Display Results – Results are rendered as cards showing posters and movie info.
+⚡ Fast and smooth UI
 
-Movie Details – Clicking a movie shows more details (optional).
+🛠️ Built With
 
-📁 Project Structure
-movie-flexer/
-├── public/
-│   └── index.html
-├── src/
-│   ├── components/
-│   │   ├── MovieCard.jsx
-│   │   ├── SearchBar.jsx
-│   │   └── Navbar.jsx
-│   ├── pages/
-│   │   └── Home.jsx
-│   ├── services/
-│   │   └── api.js
-│   ├── App.js
-│   ├── index.js
-│   └── styles.css
-├── package.json
-└── README.md
-🛠 Installation
+React.js
 
-To run the project locally:
+JavaScript (ES6)
 
-Clone the repo
+HTML5
 
-git clone https://github.com/your-username/movie-flexer.git
+CSS3
 
-Navigate into the folder
+Movie API (TMDB or similar)
 
-cd movie-flexer
+Netlify (for deployment)
 
-Install dependencies
+📂 Project Overview
 
-npm install
+Movie-Flexer uses an external movie API to fetch movie data dynamically. Users can search for movies and instantly get results with posters and basic information.
 
-Start the development server
+🚀 Live Demo
 
-npm start
-📌 API Configuration
+👉 https://movie-flexer.netlify.app/
 
-This project uses a public movie database API (like TMDB). To configure:
+📌 Future Improvements
 
-Register at the API provider (e.g., TMDB)
+🎭 Genre-based filtering
 
-Copy your API Key
+📄 Individual movie detail pages
 
-Create a .env file in the project root
+❤️ Favorite / watchlist feature
 
-Add your key
+🌙 Dark mode
 
-REACT_APP_API_KEY=your_api_key_here
-💡 Customization
+👩‍💻 Author
 
-You can extend this project by:
-
-✨ Adding genre filters
-✨ Creating individual movie detail pages
-✨ Adding pagination or infinite scroll
-✨ Saving favorite movies locally
+Arpita Debnath
+Aspiring Computer Science student & web developer
